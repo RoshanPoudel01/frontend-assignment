@@ -1,9 +1,12 @@
 import React from "react";
 import {
-    Box,
-    CloseButton,
-    Flex, useColorModeValue, Text
+  Box,
+  CloseButton,
+  Flex,
+  useColorModeValue,
+  Text,
 } from "@chakra-ui/react";
+
 import { NavItem } from "./NavItem";
 import { LinkItems } from "../helper/headerContent";
 export const SidebarContent = ({ onClose, ...rest }) => {
@@ -20,12 +23,12 @@ export const SidebarContent = ({ onClose, ...rest }) => {
     >
       <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
         <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Logo
+          Fake Store
         </Text>
         <CloseButton display={{ base: "flex", md: "none" }} onClick={onClose} />
       </Flex>
       {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
+        <NavItem key={link.name} url={link.url} icon={link.icon}>
           {link.name}
         </NavItem>
       ))}

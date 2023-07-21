@@ -1,21 +1,6 @@
 import React from "react";
-import {
-  IconButton,
-  Avatar,
-  Box,
-  Flex,
-  HStack,
-  VStack,
-  useColorModeValue,
-  Text,
-  Menu,
-  MenuButton,
-  MenuDivider,
-  MenuItem,
-  MenuList,
-  Select,
-} from "@chakra-ui/react";
-import { FiMenu, FiBell, FiChevronDown } from "react-icons/fi";
+import { Flex, useColorModeValue, Text, Select } from "@chakra-ui/react";
+
 import { SearchBar } from "../component/Searchbar";
 export const HeaderNav = ({
   onOpen,

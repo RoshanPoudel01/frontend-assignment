@@ -1,6 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
 
-import NormalUserNav from "../layout/normalUserHeader";
 import Detailspage from "../views/ItemDetails";
 import MainComponent from "../views/MainComponent";
 
@@ -24,4 +23,5 @@ export const router = createBrowserRouter([
       </SidebarWithHeader>
     ),
   },
+  
 ]);

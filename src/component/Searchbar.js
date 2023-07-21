@@ -1,26 +1,9 @@
 import React from "react";
-import {
-  Button,
-  Flex,
-  Input,
-  InputGroup,
-  InputLeftElement,
-  InputRightAddon,
-} from "@chakra-ui/react";
-import { Search2Icon } from "@chakra-ui/icons";
-import { useState } from "react";
+import { Button, Flex, Input } from "@chakra-ui/react";
+
 import { useNavigate } from "react-router";
-import { NavURL } from "../helper/Navlink";
-import ContextProvider from "../Context";
-import { useEffect } from "react";
-import { useContext } from "react";
 
-export const SearchBar = ({
-  productData,
-  handleSearch,
-  setSearchtext,
-
-}) => {
+export const SearchBar = ({ handleSearch, setSearchtext }) => {
   const navigate = useNavigate();
 
   return (

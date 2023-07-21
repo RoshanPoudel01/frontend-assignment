@@ -1,7 +1,7 @@
-import { ChakraProvider, extendTheme } from '@chakra-ui/react';
+import {  extendTheme } from '@chakra-ui/react';
 import chakraTheme from '@chakra-ui/theme'
 
-const { Button,Heading,Input,Text,FormControl,FormLabel,FormErrorMessage,Table,TableContainer} = chakraTheme.components
+const { Heading,Input,Text,FormControl,FormLabel,FormErrorMessage,Table,TableContainer} = chakraTheme.components
 
 // Define variant styles in the theme
 export const theme = extendTheme({

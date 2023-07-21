@@ -1,16 +1,15 @@
 import {
   Flex,
-  Circle,
+  
   Box,
   Image,
   Badge,
   useColorModeValue,
-  Icon,
-  chakra,
+ 
   Tooltip,
 } from "@chakra-ui/react";
 import { BsStar, BsStarFill, BsStarHalf } from "react-icons/bs";
-import { FiShoppingCart } from "react-icons/fi";
+
 const truncate = (input) =>
   input?.length > 30 ? `${input.substring(0, 20)}...` : input;
 function Rating({ rating, numReviews }) {
@@ -47,6 +46,7 @@ function Card(data) {
   return (
     <Flex p={5} w="full" alignItems="center" justifyContent="center">
       <Box
+        onClick={data.onClick}
         bg={useColorModeValue("white", "gray.800")}
         // maxW="sm"
         borderWidth="1px"
@@ -58,15 +58,6 @@ function Card(data) {
         flexDirection={"column"}
         alignItems={"center"}
       >
-        {data.isNew && (
-          <Circle
-            size="10px"
-            position="absolute"
-            top={2}
-            right={2}
-            bg="red.200"
-          />
-        )}
         <Image
           objectFit={"contain"}
           boxSize="300px"
@@ -102,17 +93,6 @@ function Card(data) {
               >
                 {truncate(data.name)}
               </Box>
-            </Tooltip>
-            <Tooltip
-              label="Add to cart"
-              bg="white"
-              placement={"top"}
-              color={"gray.800"}
-              fontSize={"1.2em"}
-            >
-              <chakra.a href={"#"} display={"flex"}>
-                <Icon as={FiShoppingCart} h={7} w={7} alignSelf={"center"} />
-              </chakra.a>
             </Tooltip>
           </Flex>
 
