@@ -1,6 +1,7 @@
 import React from "react";
 import {
   Button,
+  Flex,
   Input,
   InputGroup,
   InputLeftElement,
@@ -14,35 +15,22 @@ import ContextProvider from "../Context";
 import { useEffect } from "react";
 import { useContext } from "react";
 
-export const SearchBar = ({ apiData }) => {
+export const SearchBar = ({
+  productData,
+  handleSearch,
+  setSearchtext,
+
+}) => {
   const navigate = useNavigate();
-  const [searchtext, setSearchtext] = useState("");
-  const [context, setContext] = useContext(ContextProvider);
-  // useEffect(() => {
-  //   console.log(context, "contextcontext");
-  // }, [context]);
 
-  const handleSearch = () => {
-    if (searchtext && apiData) {
-      console.log(apiData);
-      const filterData = apiData.filter((el) =>
-        el.title?.toUpperCase().includes(searchtext?.toUpperCase())
-      );
-      setContext(filterData);
-
-      // navigate(NavURL.search, { state: { message: searchtext } });
-    } else {
-      setContext(apiData);
-      //toast show please enter search value
-    }
-  };
   return (
     <React.Fragment>
-      <InputGroup>
-        <InputLeftElement pointerEvents="none">
-          <Search2Icon color="gray.300" />
-        </InputLeftElement>
+      <Flex
+        w={{ base: "100", md: "auto" }}
+        justifyContent={{ base: "space-between", md: "unset" }}
+      >
         <Input
+          w={"auto"}
           type="text"
           name="search"
           placeholder="Search"
@@ -50,15 +38,16 @@ export const SearchBar = ({ apiData }) => {
             setSearchtext(e.target.value);
           }}
         />
-      </InputGroup>
-      <Button
-        ml={4}
-        onClick={() => {
-          handleSearch();
-        }}
-      >
-        Search
-      </Button>
+
+        <Button
+          ml={4}
+          onClick={() => {
+            handleSearch();
+          }}
+        >
+          Search
+        </Button>
+      </Flex>
     </React.Fragment>
   );
 };

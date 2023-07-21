@@ -31,37 +31,42 @@ import { useEffect, useState } from "react";
 import StarRating from "../component/Star";
 import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router";
+import { useFetchSingleProductDetail } from "../service/Ecommerce";
 
 export default function Simple() {
   const [searchParams, setSearchParams] = useSearchParams();
   const [rating, setRating] = useState("");
   const id = searchParams.get("item_id");
-
-  useEffect(() => {
-    if (id) {
-      getItemDetails();
-    }
-  }, [id]);
-  const [item, setItem] = useState(null);
-  const getItemDetails = async () => {
-    console.log(id);
-    const result = await fetch(`https://fakestoreapi.com/products/${id}`);
-    console.log(result);
-    const detaildata = await result.json();
-    console.log(detaildata);
-    setRating(detaildata.rating.rate);
-    setItem(detaildata);
-  };
+  const { data } = useFetchSingleProductDetail({ id });
+  console.log(data);
+  // useEffect(() => {
+  //   if (id) {
+  //     // getItemDetails();
+  //   }
+  // }, [id]);
+  // const getItemDetails = async () => {
+  //   console.log(id);
+  //   console.log(result);
+  //   const detaildata = await result.json();
+  //   console.log(detaildata);
+  //   setRating(detaildata.rating.rate);
+  //   setItem(detaildata);
+  // };
 
   return (
     <Container maxW={"7xl"}>
-      {item != null && (
-        <SimpleGrid columns={{ base: 1, lg: 2 }} spacing={{ base: 8, md: 10 }}>
+      {data != null && (
+        <SimpleGrid
+          columns={{ base: 1, lg: 2 }}
+          spacing={{ base: 8, md: 10 }}
+          mt={20}
+        >
           <Flex>
             <Image
+              objectFit={"contain"}
               rounded={"md"}
-              alt={item.name}
-              src={item.image}
+              alt={data.name}
+              src={data.image}
               fit={"cover"}
               align={"center"}
               w={"85%"}
@@ -77,19 +82,19 @@ export default function Simple() {
                 fontWeight={600}
                 fontSize={{ base: "2xl", sm: "4xl", lg: "5xl" }}
               >
-                {item.title}
+                {data.title}
               </Heading>
               <Flex>
                 <StarRating rating={rating} setRating={setRating} />
                 <Text ml={2} color={"#4299E1"} fontSize={"xl"}>
-                  {item.rating.count} Ratings
+                  {data.rating.count} Ratings
                 </Text>
               </Flex>
               <Text fontWeight={300} fontSize={"2xl"} color={"gray.500"}>
-                {item.description}
+                {data.description}
               </Text>
               <Text color={"#E53E3E"} fontWeight={400} fontSize={"2xl"}>
-                ${item.price}
+                ${data.price}
               </Text>
             </Box>
 

@@ -8,6 +8,7 @@ import { ChakraProvider, extendBaseTheme } from "@chakra-ui/react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import { router } from "./helper/Router";
 import { theme } from "./theme";
+import { QueryCache, QueryClient, QueryClientProvider } from "react-query";
 const {
   Button,
   Heading,
@@ -20,6 +21,23 @@ const {
   TableContainer,
 } = chakraTheme.components;
 
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: false,
+      refetchOnWindowFocus: false,
+      refetchOnReconnect: true,
+      staleTime: 30 * 1000,
+    },
+  },
+  queryCache: new QueryCache({
+    onError: async (error) => {
+      if (error.request?.status === 401) {
+        queryClient.clear();
+      }
+    },
+  }),
+});
 // const theme = extendBaseTheme({
 //   components: {
 //     Button,
@@ -35,7 +53,9 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 
 root.render(
   <ChakraProvider theme={theme}>
-    <RouterProvider router={router}></RouterProvider>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router}></RouterProvider>
+    </QueryClientProvider>
     {/* renders the app through the router */}
   </ChakraProvider>
 );
