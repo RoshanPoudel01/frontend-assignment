@@ -8,12 +8,6 @@ import {
   Heading,
   SimpleGrid,
   StackDivider,
-  Button,
-  NumberInput,
-  NumberInputField,
-  NumberInputStepper,
-  NumberIncrementStepper,
-  NumberDecrementStepper,
 } from "@chakra-ui/react";
 
 import React from "react";
@@ -101,27 +95,6 @@ const ItemDetails = () => {
                 <Text color={"#E53E3E"} fontWeight={400} fontSize={"2xl"}>
                   ${data.price}
                 </Text>
-                <Flex>
-                  <Text fontWeight={400} fontSize={"2xl"}>
-                    Quantity :
-                  </Text>
-                  <NumberInput
-                    size="lg"
-                    maxW={32}
-                    defaultValue={1}
-                    min={1}
-                    max={10}
-                  >
-                    <NumberInputField />
-                    <NumberInputStepper>
-                      <NumberIncrementStepper />
-                      <NumberDecrementStepper />
-                    </NumberInputStepper>
-                  </NumberInput>
-                </Flex>
-                <Button mt={2} size={"lg"} backgroundColor={"#38B2AC"}>
-                  Add To Cart
-                </Button>
               </Box>
 
               <Stack
