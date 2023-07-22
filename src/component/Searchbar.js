@@ -1,11 +1,7 @@
 import React from "react";
 import { Button, Flex, Input } from "@chakra-ui/react";
 
-import { useNavigate } from "react-router";
-
 export const SearchBar = ({ handleSearch, setSearchtext }) => {
-  const navigate = useNavigate();
-
   return (
     <React.Fragment>
       <Flex

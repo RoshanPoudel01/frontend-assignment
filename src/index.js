@@ -3,23 +3,12 @@ import ReactDOM from "react-dom/client";
 import "./index.css";
 
 import reportWebVitals from "./reportWebVitals";
-import chakraTheme from "@chakra-ui/theme";
-import { ChakraProvider, extendBaseTheme } from "@chakra-ui/react";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+
+import { ChakraProvider } from "@chakra-ui/react";
+import {  RouterProvider } from "react-router-dom";
 import { router } from "./helper/Router";
 import { theme } from "./theme";
 import { QueryCache, QueryClient, QueryClientProvider } from "react-query";
-const {
-  Button,
-  Heading,
-  Input,
-  Text,
-  FormControl,
-  FormLabel,
-  FormErrorMessage,
-  Table,
-  TableContainer,
-} = chakraTheme.components;
 
 const queryClient = new QueryClient({
   defaultOptions: {

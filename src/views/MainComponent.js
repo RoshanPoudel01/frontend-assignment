@@ -8,15 +8,17 @@ import { HeaderNav } from "../component/HeaderMain";
 import { useFetchProductDetails } from "../service/Ecommerce";
 const MainComponent = () => {
   const [sort, setSort] = useState();
-  const [limit, setLimit] = useState(5);
-
+  const [limit, setLimit] = useState();
+  //Navigation to details page
   const navigate = useNavigate();
   const handleDetails = (id) => {
     navigate(`/details?item_id=${id}`);
   };
+  //helps us to select limit from dropdown
   const limitHandler = (event) => {
     setLimit(event.target.value);
   };
+  //Determine the sorting order
   const sortHandler = (event) => {
     setSort(event.target.value);
   };
@@ -33,7 +35,7 @@ const MainComponent = () => {
       setData(productData);
     }
   }, [productData]);
-
+  //Search functionality from title using filter
   const handleSearch = () => {
     if (searchtext && productData) {
       const filterData = productData.filter((el) =>
@@ -47,6 +49,7 @@ const MainComponent = () => {
 
   return (
     <React.Fragment>
+      {/* HeaderNav component is used to display the header and search functionality */}
       <HeaderNav
         productData={productData}
         setSearchtext={setSearchtext}
@@ -59,6 +62,7 @@ const MainComponent = () => {
         // mt={12}
         ml={{ base: 0, md: 60 }}
       >
+        {/* Spinner is used to display the loading state */}
         {isLoading && (
           <AbsoluteCenter>
             <Spinner
@@ -70,6 +74,7 @@ const MainComponent = () => {
             />
           </AbsoluteCenter>
         )}
+        {/* Card component is used to display the product details */}
         {data?.map((x, index) => (
           <Card
             maxW="md"

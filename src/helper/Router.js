@@ -5,7 +5,7 @@ import MainComponent from "../views/MainComponent";
 
 import { NavURL } from "./Navlink";
 import SidebarWithHeader from "../layout/normalUserHeader";
-
+///actual routes for the application
 export const router = createBrowserRouter([
   {
     path: NavURL.Dashboard,
@@ -23,5 +23,4 @@ export const router = createBrowserRouter([
       </SidebarWithHeader>
     ),
   },
-  
 ]);

@@ -1,7 +1,7 @@
 import { useQuery } from "react-query";
 import { apiURl } from "../service-api";
 import { HTTPClient } from "../HttpClient";
-
+//fetch all the products with sorting and limit
 const fetchProductDetails =
   ({ sort, limit }) =>
   () => {
@@ -14,7 +14,7 @@ const useFetchProductDetails = (value) => {
     select: (data) => data?.data,
   });
 };
-
+//fetch single product details according to id
 const fetchSingleProductDetail =
   ({ id }) =>
   () => {

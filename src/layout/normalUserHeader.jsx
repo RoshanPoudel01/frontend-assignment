@@ -1,5 +1,5 @@
 
-import React, { ReactNode } from 'react';
+import React from 'react';
 import {
 
   Box,
@@ -16,7 +16,7 @@ import { SidebarContent } from './SidebarContent';
 
 
 
-
+//the sidebar 
 export default function SidebarWithHeader({
   children,
 }) {

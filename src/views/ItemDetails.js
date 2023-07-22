@@ -8,6 +8,8 @@ import {
   Heading,
   SimpleGrid,
   StackDivider,
+  AbsoluteCenter,
+  Spinner,
 } from "@chakra-ui/react";
 
 import React from "react";
@@ -22,7 +24,8 @@ const ItemDetails = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
   const id = searchParams.get("item_id");
-  const { data } = useFetchSingleProductDetail({ id });
+  const { data, isLoading } = useFetchSingleProductDetail({ id });
+  //Rating Component
   function Rating({ rating, numReviews }) {
     return (
       <Box d="flex" alignItems="center">
@@ -55,7 +58,20 @@ const ItemDetails = () => {
 
   return (
     <React.Fragment>
-      <Container maxW={"7xl"}>
+      {/* Spinner is used to display the loading state */}
+      {isLoading && (
+        <AbsoluteCenter>
+          <Spinner
+            thickness="4px"
+            speed="0.65s"
+            emptyColor="gray.200"
+            color="blue.500"
+            size="xl"
+          />
+        </AbsoluteCenter>
+      )}
+      {/* Container is used to display the product details */}
+      <Container maxW={"7xl"} p={1} backgroundColor={"#FFFFFF"}>
         {data != null && (
           <SimpleGrid
             columns={{ base: 1, lg: 2 }}
@@ -64,6 +80,7 @@ const ItemDetails = () => {
           >
             <Flex>
               <Image
+                mb={10}
                 objectFit={"contain"}
                 rounded={"md"}
                 alt={data.name}
@@ -71,12 +88,12 @@ const ItemDetails = () => {
                 fit={"cover"}
                 align={"center"}
                 w={"100%"}
-                h={{ base: "85%", sm: "300px", lg: "400px" }}
+                h={{ base: "100%", sm: "300px", lg: "400px" }}
                 fallbackSrc="https://images.unsplash.com/photo-1596516109370-29001ec8ec36?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwyODE1MDl8MHwxfGFsbHx8fHx8fHx8fDE2Mzg5MzY2MzE&ixlib=rb-1.2.1&q=80&w=1080"
               />
             </Flex>
 
-            <Stack spacing={{ base: 6, md: 10 }}>
+            <Stack spacing={{ base: 6, md: 10 }} mt={10}>
               <Box as={"header"}>
                 <Heading
                   lineHeight={1.1}
@@ -85,6 +102,7 @@ const ItemDetails = () => {
                 >
                   {data.title}
                 </Heading>
+                {/* Rating Component */}
                 <Rating
                   rating={data.rating.rate}
                   numReviews={data.rating.count}
